@@ -1,3 +1,8 @@
+Set in docker-compose.override ENV
+```bash
+API_URI=
+```
+
 Install dependencies inside container:
 ```bash
 docker-compose run web npm i -q

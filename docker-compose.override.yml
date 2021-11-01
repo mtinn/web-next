@@ -6,6 +6,7 @@ services:
         command: npm run dev
         environment:
             NODE_ENV: development
+            API_URI: ''
         ports:
             - "3000:3000"
             - "9229:9229"
