@@ -1,19 +1,16 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import {Category} from "../domain/category/types";
 import {InferGetStaticPropsType} from "next";
 import ListItem from "../domain/category/components/list";
 import {flattenCategories} from "../domain/category/categories";
+import {getCategoriesAll} from "../api/category/data";
 
 export const getStaticProps = async () => {
-    const res = await fetch(process.env.API_URI + 'categories')
-        .then((res) => res.json());
-    const categories:Category[] = res['items'];
+    const categories = await getCategoriesAll()
     return {
         props: {
             categories: flattenCategories(categories)
-        },
+        }
     }
 }
 
