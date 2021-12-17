@@ -1,6 +1,7 @@
-import {Category} from "../types"
+import {Category} from "../../../api/category/type"
 import {ReactNode} from "react";
 import {CategoryContext} from "../contexts/category";
+import {flattenCategories} from "../categories";
 
 
 const findByPath = function(slug: string, categories: Category[]): Category[] {
@@ -25,10 +26,13 @@ export const CategoriesContainer = ({children, categories}: {
     children: ReactNode,
     categories: Category[]
 }) => {
-    const getCategory = (id: string) => categories != undefined ? categories.find(x => x.id === id): undefined
-    const findBySlug = (slug: string) =>  categories != undefined ? categories.find(x => x.absoluteSlug === slug): undefined
-    const findPath = (slug: string) => categories != undefined ? findByPath(slug, categories): []
+    const flatten = flattenCategories(categories)
+    const getCategory = (id: string) => flatten != undefined ? flatten.find(x => x.id === id): undefined
+    const findBySlug = (slug: string) =>  flatten != undefined ? flatten.find(x => x.absoluteSlug === slug): undefined
+    const findPath = (slug: string) => flatten != undefined ? findByPath(slug, flatten): []
+    const getAll = () => categories
+
     return (
-        <CategoryContext.Provider value={ { getCategory, findBySlug, findPath }}>{children}</CategoryContext.Provider>
+        <CategoryContext.Provider value={ { getCategory, findBySlug, findPath, getAll }}>{children}</CategoryContext.Provider>
     )
 }

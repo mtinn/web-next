@@ -1,9 +1,9 @@
 import Breadcrumb from "./breadcrumb";
 import {Category} from "../types";
 import LayoutView from "../../../domain/layout/components/view";
-import {Layout} from "../../../api/layout/type";
+import {Layout} from "../../../api/layout/type"
 
-function CategoryView({category, layout }: { category: Category, layout: Layout }) {
+function CategoryView({category, layout }: {category: Category, layout: Layout}) {
 
     return (
         <>

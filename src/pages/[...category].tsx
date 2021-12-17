@@ -1,23 +1,16 @@
 import {CategoriesContainer} from "../domain/category/containers/category"
 import {flattenCategories} from "../domain/category/categories"
-import {GetServerSideProps, GetStaticPropsContext, InferGetStaticPropsType} from "next"
+import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next"
 import CategoryView from "../domain/category/components/view"
 import {getCategoriesAll} from "../api/category/data"
 import {getLayout} from "../api/layout/data"
 
 
-export async function getStaticPaths() {
-    return {
-        paths: [],
-        fallback: 'blocking'
-    }
-}
-
-
-export const getStaticProps = async (context: GetStaticPropsContext) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const categories = await getCategoriesAll()
 
     const categorySlug = context.params?.category
+    const page = context.query?.page ?? 1
     const slug = typeof categorySlug === "string" ? categorySlug : categorySlug?.join('/')
     const category = flattenCategories(categories).find(x => x.absoluteSlug === slug)
 
@@ -27,19 +20,17 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
         };
     }
 
-
-    const layout = await getLayout(category.id)
+    const layout = await getLayout(category.id, Number(page))
 
     return {
         props: {
-            categories: flattenCategories(categories),
+            categories: categories,
             layout: layout,
             category: category
-        },
-        revalidate: 60,
+        }
     }
 }
-const CategoryPage = ({categories, layout, category} : InferGetStaticPropsType<typeof getStaticProps>) => {
+const CategoryPage = ({categories, layout, category}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
     return <CategoriesContainer categories={categories}>
         <CategoryView layout={layout} category={category}></CategoryView>
