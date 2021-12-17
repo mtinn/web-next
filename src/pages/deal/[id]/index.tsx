@@ -1,30 +1,28 @@
-import {GetStaticPropsContext} from "next";
-import {getDeal} from "../../../api/deal/data";
+import { GetStaticPropsContext } from "next";
+import { getDeal } from "../../../api/deal/data";
 
 export async function getStaticPaths() {
-    return {
-        paths: [],
-        fallback: 'blocking'
-    }
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
 }
 export const getStaticProps = async (context: GetStaticPropsContext) => {
-    const id = context.params?.id
-    const deal = typeof id === "string" ? await getDeal(id): undefined
+  const id = context.params?.id;
+  const deal = typeof id === "string" ? await getDeal(id) : undefined;
 
-    if (undefined === deal) {
-        return {
-            notFound: true
-        };
-    }
+  if (undefined === deal) {
     return {
-        redirect: {
-            destination: `/deal/${deal.id}/${deal.slug}`,
-            permanent: true
-        },
-    }
-}
-const DealPage = () => {
+      notFound: true,
+    };
+  }
+  return {
+    redirect: {
+      destination: `/deal/${deal.id}/${deal.slug}`,
+      permanent: true,
+    },
+  };
+};
+const DealPage = () => {};
 
-}
-
-export default DealPage
+export default DealPage;

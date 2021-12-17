@@ -3,23 +3,25 @@ import styles from "../../../styles/Header.module.css";
 import logo from "../../../../public/img.png";
 import Link from "next/link";
 import Menu from "./menu";
+import Image from "next/image";
 
 function HeaderView() {
-
-    return (
-        <>
-            <header>
-                <span>
-                    <Link href={`/`}>
-                        <a><img className={styles.logo} src={logo.src}/></a>
-                    </Link>
-                </span>
-                <span>
-                    <Menu/>
-                </span>
-            </header>
-        </>
-    );
-};
+  return (
+    <>
+      <header>
+        <span>
+          <Link href="/">
+            <a>
+              <Image className={styles.logo} src={logo.src} alt="" />
+            </a>
+          </Link>
+        </span>
+        <span>
+          <Menu />
+        </span>
+      </header>
+    </>
+  );
+}
 
 export default HeaderView;
