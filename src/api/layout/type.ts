@@ -24,7 +24,7 @@ export const SegmentsSchema = z.object({
   }),
 });
 export const layoutSchema = z.object({
-  header: HeaderSchema,
+  header: HeaderSchema.nullish(),
   segments: z.array(SegmentsSchema),
 });
 export type SegmentMetaData = z.infer<typeof SegmentItemMetadata>;

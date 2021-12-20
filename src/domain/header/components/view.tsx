@@ -12,7 +12,13 @@ function HeaderView() {
         <span>
           <Link href="/">
             <a>
-              <Image className={styles.logo} src={logo.src} alt="" />
+              <Image
+                className={styles.logo}
+                src={logo.src}
+                alt=""
+                width={50}
+                height={40}
+              />
             </a>
           </Link>
         </span>

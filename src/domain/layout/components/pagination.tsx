@@ -14,8 +14,7 @@ export function getCurrentPage(list: SegmentMetaData): number {
   }
 
   if (offset > total) {
-    const lastPage = getPagesAmount(limit, total);
-    return lastPage;
+    return getPagesAmount(limit, total);
   }
 
   let page = offset / limit;

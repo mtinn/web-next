@@ -1,0 +1,22 @@
+
+/* level 1 Main menu ----------------------------------------- */
+
+.main > ul{
+  list-style:none;
+  position:relative;
+}
+.main > ul > li{
+  width: 200px;
+}
+/* sub Main menu ----------------------------------------- */
+.main > ul > li ul {
+  list-style:none;
+  position: absolute;
+  z-index:1000;
+  left:250px;
+  top:0px;
+  width: 200px;
+}
+.hidden {
+  display: none;
+}

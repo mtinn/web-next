@@ -1,4 +1,4 @@
-import { Category } from "../../category/types";
+import { Category } from "../../../api/category/type";
 import { useContext } from "react";
 import { CategoryContext } from "../../category/contexts/category";
 import BreadcrumbLinks from "../../../utils/breadcrumb";

@@ -6,7 +6,7 @@ export default function SegmentDeal({ items }: { items: SegmentListItem[] }) {
   const segmentsRender = items.map((item: SegmentListItem) => {
     return (
       <>
-        <li>
+        <li key={item.id}>
           <Link
             href={{
               pathname: "/deal/[id]/[slug]",
