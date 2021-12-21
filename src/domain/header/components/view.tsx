@@ -1,11 +1,17 @@
 import React from "react";
-import styles from "../../../styles/Header.module.css";
 import logo from "../../../../public/img.png";
 import Link from "next/link";
 import Menu from "./menu";
 import Image from "next/image";
+import styles from "./Header.module.css";
+import {useRouter} from "next/router";
 
 function HeaderView() {
+  const onClick = () => {
+    document.getElementById("menu")?.classList.remove(styles.hidden);
+  };
+  const router = useRouter();
+  const path = [router.query.category ?? []].flat();
   return (
     <>
       <header>
@@ -23,6 +29,9 @@ function HeaderView() {
           </Link>
         </span>
         <span>
+          <a onClick={onClick}>Menu</a>
+        </span>
+        <span key={path.join("/")} id={"menu"} className={styles.hidden}>
           <Menu />
         </span>
       </header>

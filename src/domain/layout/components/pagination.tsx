@@ -96,50 +96,64 @@ export default function Pagination({
   const pages = preparePaginationModel(metadata.total, currentPage, 3);
   return (
     <>
-      {previousPage && (
-        <Link
-          href={{
-            pathname: path.join("/"),
-            query: { page: previousPage },
-          }}
-        >
-          <a> Previous Page</a>
-        </Link>
-      )}
-      {pages.map((page) => {
-        const isActive = page === currentPage;
-        if (page === 0) {
-          return <span> {DOTS}</span>;
-        }
-        if (isActive) {
-          return (
-            <div>
-              <b>{page}</b>
-            </div>
-          );
-        }
-        return (
-          <Link
-            key={page}
-            href={{
-              pathname: path.join("/"),
-              query: { page: page },
-            }}
-          >
-            <a> {page}</a>
-          </Link>
-        );
-      })}
-      {nextPage && (
-        <Link
-          href={{
-            pathname: path.join("/"),
-            query: { page: nextPage },
-          }}
-        >
-          <a> Next Page</a>
-        </Link>
-      )}
+      <nav>
+        <ul>
+          {previousPage && (
+            <li key={"previous"}>
+              <Link
+                href={{
+                  pathname: path.join("/"),
+                  query: { page: previousPage },
+                }}
+              >
+                <a>Previous Page</a>
+              </Link>
+            </li>
+          )}
+          {pages.map((page) => {
+            const isActive = page === currentPage;
+            if (page === 0) {
+              return (
+                <li key={"dots"}>
+                  <span> {DOTS}</span>
+                </li>
+              );
+            }
+            if (isActive) {
+              return (
+                <li key={page}>
+                  <b>{page}</b>
+                </li>
+              );
+            }
+            return (
+              <li key={page}>
+                <Link
+                  key={page}
+                  href={{
+                    pathname: path.join("/"),
+                    query: { page: page },
+                  }}
+                >
+                  <a> {page}</a>
+                </Link>
+              </li>
+            );
+          })}
+          {nextPage && (
+            <li key={"next"}>
+              <Link
+                href={{
+                  pathname: path.join("/"),
+                  query: { page: nextPage },
+                }}
+              >
+                <a> Next Page</a>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </nav>
     </>
   );
 }

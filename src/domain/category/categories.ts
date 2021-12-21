@@ -5,3 +5,6 @@ export function flattenCategories(categories: Category[]): Category[] {
     [item].concat(flattenCategories(item.categories))
   );
 }
+export function hasChildren(category: Category): boolean {
+  return category.categories.length > 0;
+}

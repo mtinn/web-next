@@ -20,3 +20,9 @@
 .hidden {
   display: none;
 }
+.active {
+  color: red;
+}
+.logo {
+  width: 50px;
+}

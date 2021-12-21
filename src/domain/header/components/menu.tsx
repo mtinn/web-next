@@ -4,6 +4,7 @@ import { Category } from "../../../api/category/type";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Header.module.css";
+import { hasChildren } from "../../category/categories";
 
 function SubMenu({
   category,
@@ -18,27 +19,28 @@ function SubMenu({
   level: number;
   onClick: Function;
 }) {
+  const active =
+    categorySelected !== undefined &&
+    categorySelected.absoluteSlug === category.absoluteSlug;
   return (
     <li key={category.id}>
       <a
+        className={active ? styles.active : undefined}
         href={"/" + category.absoluteSlug}
         onClick={
-          category.categories.length > 0
+          hasChildren(category)
             ? (e: React.MouseEvent<HTMLElement>) =>
                 onClick(e, category.absoluteSlug)
             : undefined
         }
       >
         {category.name}
-        {category.categories.length > 0 ? " >" : ""}
+        {hasChildren(category) ? " >" : ""}
       </a>
-      {category.categories.length > 0 && (
+      {hasChildren(category) && (
         <MenuItem
           categories={category.categories}
-          active={
-            categorySelected !== undefined &&
-            categorySelected.absoluteSlug === category.absoluteSlug
-          }
+          active={active}
           selectedCategories={selectedCategories}
           level={level}
           parentCategory={category}
@@ -99,20 +101,18 @@ function Menu() {
     setLevel(findPath(slug));
   };
   return (
-    <>
-      <nav className={styles.main}>
-        {categories.length > 0 && (
-          <MenuItem
-            categories={categories}
-            active={true}
-            selectedCategories={levels}
-            level={0}
-            parentCategory={undefined}
-            onClick={onClickHandler}
-          />
-        )}
-      </nav>
-    </>
+    <nav className={styles.main}>
+      {categories.length > 0 && (
+        <MenuItem
+          categories={categories}
+          active={true}
+          selectedCategories={levels}
+          level={0}
+          parentCategory={undefined}
+          onClick={onClickHandler}
+        />
+      )}
+    </nav>
   );
 }
 

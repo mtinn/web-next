@@ -1,21 +1,20 @@
 import Link from "next/link";
-import { SegmentListItem } from "../../../api/layout/type";
+import { SegmentDealItem } from "../../../api/layout/type";
 import { ReactNode } from "react";
 
-export default function SegmentDeal({ items }: { items: SegmentListItem[] }) {
-  const segmentsRender = items.map((item: SegmentListItem) => {
+export default function SegmentDeal({ items }: { items: SegmentDealItem[] }) {
+  const segmentsRender = items.map((item: SegmentDealItem) => {
     return (
       <>
-        <li key={item.id}>
-          <Link
-            href={{
-              pathname: "/deal/[id]/[slug]",
-              query: { id: item.id, slug: item.slug },
-            }}
-          >
-            <a>{item.title}</a>
-          </Link>
-        </li>
+        <Link
+          key={item.id}
+          href={{
+            pathname: "/deal/[id]/[slug]",
+            query: { id: item.id, slug: item.slug },
+          }}
+        >
+          <a>{item.title}</a>
+        </Link>
       </>
     );
   });
@@ -23,10 +22,8 @@ export default function SegmentDeal({ items }: { items: SegmentListItem[] }) {
   return (
     <>
       <ul>
-        {segmentsRender.map((item: ReactNode) => (
-          <>
-            <div>{item}</div>
-          </>
+        {segmentsRender.map((item: ReactNode, index) => (
+          <li key={index}>{item}</li>
         ))}
       </ul>
     </>
