@@ -10,6 +10,10 @@ export const SegmentDealItem = z.object({
   title: z.string(),
 });
 export const MediaSchema = z.object({
+  size: z.object({
+    width: z.number(),
+    height: z.number(),
+  }),
   items: z.object({
     xsmall: z.string(),
     small: z.string(),

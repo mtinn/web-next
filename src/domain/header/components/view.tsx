@@ -1,14 +1,20 @@
 import React from "react";
 import logo from "../../../../public/img.png";
 import Link from "next/link";
-import Menu from "./menu";
+import Menu from "./menu/menu";
 import Image from "next/image";
-import styles from "./Header.module.css";
-import {useRouter} from "next/router";
+import styles from "./menu/Menu.module.css";
+import { useRouter } from "next/router";
+import Cart from "../../cart/view";
 
 function HeaderView() {
   const onClick = () => {
-    document.getElementById("menu")?.classList.remove(styles.hidden);
+    const el = document.getElementById("menu")?.classList;
+    if (el?.contains(styles.hidden)) {
+      el.remove(styles.hidden);
+    } else {
+      el?.add(styles.hidden);
+    }
   };
   const router = useRouter();
   const path = [router.query.category ?? []].flat();
@@ -34,6 +40,7 @@ function HeaderView() {
         <span key={path.join("/")} id={"menu"} className={styles.hidden}>
           <Menu />
         </span>
+        <Cart />
       </header>
     </>
   );

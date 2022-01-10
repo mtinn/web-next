@@ -3,22 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect=0.0.0.0:9229' next dev",
-    "build": "next build",
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider --inspect=0.0.0.0:9229' next dev",
+    "build": "next build NODE_OPTIONS='--openssl-legacy-provider'",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint-fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix"
   },
   "dependencies": {
-    "next": "11.1.2",
+    "cookie": "^0.4.1",
+    "js-cookie": "^3.0.1",
+    "next": "^12.0.7",
+    "npm": "^8.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "zod": "^3.11.6"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.1",
     "@types/react": "17.0.31",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
+    "eslint-config-next": "^12.0.7",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",

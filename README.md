@@ -5,7 +5,7 @@ API_URI=
 
 Install dependencies inside container:
 ```bash
-docker-compose run web npm i -q
+docker-compose run web-next npm i -q
 ````
 
 Create and start containers:

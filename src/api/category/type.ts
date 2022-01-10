@@ -15,5 +15,9 @@ export const categorySchema: z.Schema<Category> = z.lazy(() =>
 export type Category = z.infer<typeof categorySchemaBase> & {
   categories: Category[];
 };
-
 export const categoriesSchema = z.array(categorySchema);
+
+export const categoriesResponseSchema = z.object({
+  items: z.array(categorySchema),
+});
+export type CategoryResponse = z.infer<typeof categoriesResponseSchema>;

@@ -1,9 +1,7 @@
-import { Category, categoriesSchema } from "./type";
+import { categoriesSchema, Category, CategoryResponse } from "./type";
+import apiClient from "../apiClient";
 
 export async function getCategoriesAll(): Promise<Category[]> {
-  const res = await fetch(process.env.API_URI + "categories").then((res) =>
-    res.json()
-  );
-
-  return categoriesSchema.parse(res["items"]);
+  const categories = await apiClient.get<CategoryResponse>("categories");
+  return categoriesSchema.parse(categories.items);
 }

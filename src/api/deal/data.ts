@@ -1,8 +1,7 @@
 import { Deal, DealSchema } from "./type";
+import apiClient from "../apiClient";
 
 export async function getDeal(id: string): Promise<Deal> {
-  const deal = await fetch(process.env.API_URI + "deals/" + id).then(
-    (response) => response.json()
-  );
+  const deal = await apiClient.get<Deal>("deals/" + id);
   return DealSchema.parse(deal);
 }

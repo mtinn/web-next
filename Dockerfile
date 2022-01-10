@@ -1,4 +1,4 @@
-FROM node:16.12.0-alpine
+FROM node:17.3.0-alpine
 
 RUN apk add --no-cache git
 
@@ -12,7 +12,7 @@ COPY . /usr/src/app
 
 ENV NODE_ENV production
 
-RUN npm install -g json -q
+RUN npm install -g -q
 
 
 CMD [ "npm", "start" ]

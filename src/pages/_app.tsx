@@ -4,6 +4,7 @@ import { flattenCategories } from "../domain/category/categories";
 import { CategoriesContainer } from "../domain/category/containers/category";
 import { getCategoriesAll } from "../api/category/data";
 import Layout from "../layouts/Layout";
+import { CartProvider } from "../domain/cart/contexts/cart";
 
 export const getStaticProps = async () => {
   const categories = await getCategoriesAll();
@@ -16,11 +17,13 @@ export const getStaticProps = async () => {
 };
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <CategoriesContainer categories={pageProps.categories}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </CategoriesContainer>
+    <CartProvider>
+      <CategoriesContainer categories={pageProps.categories}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CategoriesContainer>
+    </CartProvider>
   );
 }
 export default MyApp;

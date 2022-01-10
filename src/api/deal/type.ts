@@ -11,6 +11,18 @@ export const DealSchema = z.object({
       absoluteSlug: z.string(),
     })
   ),
+  dealLines: z.array(
+    z.object({
+      name: z.string(),
+      variants: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          stockLevel: z.number().nullish(),
+        })
+      ),
+    })
+  ),
 });
 
 export type Deal = z.infer<typeof DealSchema>;
