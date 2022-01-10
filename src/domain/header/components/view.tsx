@@ -5,7 +5,7 @@ import Menu from "./menu/menu";
 import Image from "next/image";
 import styles from "./menu/Menu.module.css";
 import { useRouter } from "next/router";
-import Cart from "../../cart/view";
+import Cart from "../../cart/components/view";
 
 function HeaderView() {
   const onClick = () => {

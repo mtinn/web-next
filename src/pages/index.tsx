@@ -1,34 +1,53 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { InferGetStaticPropsType } from "next";
-import ListItem from "../domain/category/components/list";
-import { flattenCategories } from "../domain/category/categories";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+
+import {
+  CategoryTag,
+  flattenCategories,
+  hasTag,
+} from "../domain/category/categories";
 import { getCategoriesAll } from "../api/category/data";
 
-export const getStaticProps = async () => {
+import CategoryView from "../domain/category/components/view";
+import { getLayout } from "../api/layout/data";
+import { CategoriesContainer } from "../domain/category/containers/category";
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   const categories = await getCategoriesAll();
+  const page = context.query?.page ?? 1;
+
+  const category = flattenCategories(categories).find((x) =>
+    hasTag(x, CategoryTag.START)
+  );
+
+  if (undefined === category) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const layout = await getLayout(category.id, Number(page));
+
   return {
     props: {
-      categories: flattenCategories(categories),
+      categories: categories,
+      layout: layout,
+      category: category,
     },
   };
 };
 
-function Home({ categories }: InferGetStaticPropsType<typeof getStaticProps>) {
+const Home = ({
+  categories,
+  layout,
+  category,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-      </Head>
-
-      <main className={styles.main}>
-        <h1>Categories</h1>
-        <ListItem categories={categories} />
-      </main>
-
-      <footer className={styles.footer}></footer>
-    </div>
+    <CategoriesContainer categories={categories}>
+      <CategoryView layout={layout} category={category}></CategoryView>
+    </CategoriesContainer>
   );
-}
+};
 
 export default Home;

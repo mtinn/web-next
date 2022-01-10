@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Cart, cartItem } from "../../api/cart/type";
-import api from "../../api/api";
-import { useCart } from "./contexts/cart";
-import styles from "./Cart.module.css";
-import Link from "next/link";
+import React, { useEffect } from "react";
+import { Cart, cartItem } from "../../../api/cart/type";
+import api from "../../../api/api";
+import { useCart } from "../contexts/cart";
+import styles from "../Cart.module.css";
+import Item from "../components/item";
 
 function Cart() {
   const { cart, setCart } = useCart();
@@ -39,26 +39,7 @@ function Cart() {
         <span>
           Cart List - <a onClick={handlerClearCart}>Clear cart</a>
         </span>
-        <ul>
-          {cart?.items.map((item: cartItem) => {
-            return (
-              <li key={item.id}>
-                <Link
-                  key={item.id}
-                  href={{
-                    pathname: "/deal/[id]/[slug]",
-                    query: { id: item.deal.id, slug: item.deal.slug },
-                  }}
-                >
-                  <a>
-                    {item.deal.title} - {item.deal.dealLine.name} -{" "}
-                    {item.quantity}
-                  </a>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <ul>{cart?.items.map((item: cartItem) => Item(item))}</ul>
         <span>Proceed to checkout - {cart?.totalPrice?.formattedValue}</span>
       </div>
     </>

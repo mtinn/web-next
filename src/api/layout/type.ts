@@ -51,9 +51,29 @@ export const SegmentsSchemaBanner = z.object({
     items: z.array(SegmentBannerItem),
   }),
 });
+export const SegmentsCategoryRecs = z.object({
+  id: z.string(),
+  title: z.string(),
+  type: z.literal("category_recs"),
+  list: z.object({
+    metadata: SegmentItemMetadata,
+    items: z.array(SegmentBannerItem),
+  }),
+});
+export const SegmentContentBlock = z.object({
+  id: z.string(),
+  title: z.string(),
+  type: z.literal("content_block"),
+  list: z.object({
+    metadata: SegmentItemMetadata,
+    items: z.array(SegmentBannerItem),
+  }),
+});
 export const SegmentsSchema = z.union([
   SegmentsSchemaDeal,
   SegmentsSchemaBanner,
+  SegmentsCategoryRecs,
+  SegmentContentBlock,
 ]);
 export const layoutSchema = z.object({
   header: HeaderSchema.nullish(),

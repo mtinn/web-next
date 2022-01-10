@@ -12,12 +12,14 @@ export default function Segments({ segments }: { segments: LayoutSegments[] }) {
           <SegmentBanner key={index} items={item.list.items} />
         </>
       );
-    } else {
+    } else if (item.type === "deals") {
       return (
         <div key={index}>
           <h2> Deals </h2>
           <SegmentDeal items={item.list.items} />
-          <Pagination metadata={item.list.metadata} />
+          {item.list.items.length !== item.list.metadata.total && (
+            <Pagination metadata={item.list.metadata} />
+          )}
         </div>
       );
     }

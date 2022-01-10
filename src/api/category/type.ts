@@ -1,10 +1,12 @@
 import { z } from "zod";
+import { CategoryTag } from "../../domain/category/categories";
 
 const categorySchemaBase = z.object({
   id: z.string(),
   name: z.string(),
   slug: z.string(),
   absoluteSlug: z.string(),
+  tags: z.array(z.string()),
 });
 
 export const categorySchema: z.Schema<Category> = z.lazy(() =>
