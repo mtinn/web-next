@@ -1,8 +1,15 @@
 import Link from "next/link";
-import { SegmentDealItem } from "../../../api/layout/type";
+import { SegmentDealItem, SegmentMetaData } from "../../../api/layout/type";
 import { ReactNode } from "react";
+import Pagination from "./pagination";
 
-export default function SegmentDeal({ items }: { items: SegmentDealItem[] }) {
+export default function SegmentDeal({
+  items,
+  meta,
+}: {
+  items: SegmentDealItem[];
+  meta: SegmentMetaData;
+}) {
   const segmentsRender = items.map((item: SegmentDealItem) => {
     return (
       <>
@@ -26,6 +33,7 @@ export default function SegmentDeal({ items }: { items: SegmentDealItem[] }) {
           <li key={index}>{item}</li>
         ))}
       </ul>
+      {items.length !== meta.total && <Pagination metadata={meta} />}
     </>
   );
 }

@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { SegmentBannerItem } from "../../../api/layout/type";
+import { SegmentBannerItem, SegmentMetaData } from "../../../api/layout/type";
 import { ReactNode } from "react";
 import MediaItem from "./mediaItem";
 
 export default function SegmentBanner({
   items,
+  meta,
 }: {
   items: SegmentBannerItem[];
+  meta: SegmentMetaData;
 }) {
   const segmentsRender = items.map((item: SegmentBannerItem) => {
     return (

@@ -1,28 +1,23 @@
 import SegmentDeal from "./segmentDeal";
-import { LayoutSegments } from "../../../api/layout/type";
-import Pagination from "./pagination";
-import { ReactNode } from "react";
 import SegmentBanner from "./segmentBanner";
+import { LayoutSegments } from "../../../api/layout/type";
+import { ReactNode } from "react";
 
+const viewsTypeSegment = new Map<string, Function>([
+  ["banners", SegmentBanner],
+  ["deals", SegmentDeal],
+]);
 export default function Segments({ segments }: { segments: LayoutSegments[] }) {
   const segmentsRender = segments.map((item: LayoutSegments, index: number) => {
-    if (item.type === "banners") {
-      return (
-        <>
-          <SegmentBanner key={index} items={item.list.items} />
-        </>
-      );
-    } else if (item.type === "deals") {
-      return (
-        <div key={index}>
-          <h2> Deals </h2>
-          <SegmentDeal items={item.list.items} />
-          {item.list.items.length !== item.list.metadata.total && (
-            <Pagination metadata={item.list.metadata} />
-          )}
-        </div>
-      );
-    }
+    const Component = viewsTypeSegment.get(item.type);
+    if (undefined === Component) return null;
+    return (
+      <Component
+        key={index}
+        items={item.list.items}
+        meta={item.list.metadata}
+      />
+    );
   });
 
   return (
