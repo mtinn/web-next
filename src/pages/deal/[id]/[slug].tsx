@@ -29,7 +29,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
   return {
     props: {
-      categories: flattenCategories(categories),
+      categories: categories,
       deal: deal,
       category: category,
     },
