@@ -14,3 +14,45 @@ a {
 * {
   box-sizing: border-box;
 }
+.circle-loader {
+  fill: transparent;
+  stroke: #3cbdd1;
+  stroke-width: 4;
+  stroke-linecap: round;
+  animation:
+    dash 1.5s ease-in-out infinite,
+    rotate 1.5s linear infinite;
+}
+
+.circle-loader.grey {
+  stroke: rgba(0, 0, 0, 0.38);
+}
+
+.circle-loader.white {
+  stroke: #FFF;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

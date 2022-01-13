@@ -5,11 +5,14 @@ import React, { useState } from "react";
 import api from "../../../api/api";
 import { useCart } from "../../cart/contexts/cart";
 import { Cart } from "../../../api/cart/type";
+import Loader from "../../../utils/loader";
 
 function DealView({ deal, category }: { deal: Deal; category: Category }) {
   const { setCart } = useCart();
   const [variantId, selectVariant] = useState<string | null>(null);
+  const [variantInCart, variantBeingAddedToCart] = useState<boolean>(false);
   const handlerAddToCart = (e: React.MouseEvent<HTMLElement>): void => {
+    variantBeingAddedToCart(true);
     e.preventDefault();
     if (null === variantId) {
       alert("Pls select variant");
@@ -27,6 +30,7 @@ function DealView({ deal, category }: { deal: Deal; category: Category }) {
     (async () => {
       const cart = await api.post<typeBody, Cart>("/api/cart/add", body);
       setCart(cart);
+      variantBeingAddedToCart(false);
     })();
   };
   const handlerVariant = (
@@ -36,6 +40,8 @@ function DealView({ deal, category }: { deal: Deal; category: Category }) {
     e.preventDefault();
     selectVariant(variantId);
   };
+
+  const loaderView = variantInCart && <Loader size={24} theme={"gray"} />;
   return (
     <>
       <Breadcrumb category={category} deal={deal} />
@@ -57,7 +63,7 @@ function DealView({ deal, category }: { deal: Deal; category: Category }) {
           )}
         </ul>
       </div>
-      <button onClick={handlerAddToCart}>Add to Cart</button>
+      <button onClick={handlerAddToCart}>{loaderView} Add to Cart</button>
     </>
   );
 }
