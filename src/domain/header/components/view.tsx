@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../../public/img.png";
 import Link from "next/link";
 import Menu from "./menu/menu";
@@ -8,16 +8,9 @@ import { useRouter } from "next/router";
 import Cart from "../../cart/components/view";
 
 function HeaderView() {
-  const onClick = () => {
-    const el = document.getElementById("menu")?.classList;
-    if (el?.contains(styles.hidden)) {
-      el.remove(styles.hidden);
-    } else {
-      el?.add(styles.hidden);
-    }
-  };
   const router = useRouter();
   const path = [router.query.category ?? []].flat();
+  const [menu, showMenu] = useState<boolean>(false);
   return (
     <>
       <header>
@@ -35,9 +28,16 @@ function HeaderView() {
           </Link>
         </span>
         <span>
-          <a onClick={onClick}>Menu</a>
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              showMenu(!menu);
+            }}
+          >
+            Menu
+          </a>
         </span>
-        <span key={path.join("/")} id={"menu"} className={styles.hidden}>
+        <span key={path.join("/")} className={menu ? "" : styles.hidden}>
           <Menu />
         </span>
         <Cart />
