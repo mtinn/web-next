@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { SegmentDealItem, SegmentMetaData } from "../../../api/layout/type";
+import {
+  SegmentBannerItem,
+  SegmentDealItem,
+  SegmentMetaData,
+} from "../../../api/layout/type";
 import { ReactNode } from "react";
 import Pagination from "./pagination";
-
-export default function SegmentDeal({
-  items,
-  meta,
-}: {
+import { SegmentType } from "./segments";
+interface SegmentType2 extends SegmentType {
   items: SegmentDealItem[];
-  meta: SegmentMetaData;
-}) {
+}
+export default function SegmentDeal({ items, meta }: SegmentType2) {
   const segmentsRender = items.map((item: SegmentDealItem) => {
     return (
       <>

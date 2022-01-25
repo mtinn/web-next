@@ -4,7 +4,7 @@ import { flattenCategories } from "../domain/category/categories";
 import { CategoriesContainer } from "../domain/category/containers/category";
 import { getCategoriesAll } from "../api/category/data";
 import Layout from "../layouts/Layout";
-import { CartProvider } from "../domain/cart/contexts/cart";
+import { CartProvider } from "../domain/cart/hooks/cart";
 
 export const getStaticProps = async () => {
   const categories = await getCategoriesAll();

@@ -2,34 +2,26 @@ import { Category } from "../../category/types";
 import Breadcrumb from "./breadcrumb";
 import { Deal } from "../../../api/deal/type";
 import React, { useState } from "react";
-import api from "../../../api/api";
-import { useCart } from "../../cart/contexts/cart";
-import { Cart } from "../../../api/cart/type";
+import { useCart } from "../../cart/hooks/cart";
 import Loader from "../../../utils/loader";
 
 function DealView({ deal, category }: { deal: Deal; category: Category }) {
-  const { setCart } = useCart();
+  const { addToCart } = useCart();
   const [variantId, selectVariant] = useState<string | null>(null);
   const [variantInCart, variantBeingAddedToCart] = useState<boolean>(false);
   const handlerAddToCart = (e: React.MouseEvent<HTMLElement>): void => {
-    variantBeingAddedToCart(true);
     e.preventDefault();
     if (null === variantId) {
       alert("Pls select variant");
       return;
     }
-    type typeBody = {
-      variantId: string;
-      categoryTrackingString: string;
-    };
-    const body = {
+    variantBeingAddedToCart(true);
+    const item = {
       variantId: variantId,
       categoryTrackingString: "",
     };
-
     (async () => {
-      const cart = await api.post<typeBody, Cart>("/api/cart/add", body);
-      setCart(cart);
+      await addToCart(item);
       variantBeingAddedToCart(false);
     })();
   };
