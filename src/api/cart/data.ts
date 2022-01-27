@@ -19,7 +19,7 @@ export async function addToCart(token: string, body: bodyType): Promise<Cart> {
   });
 }
 export async function resetCart(token: string): Promise<Cart> {
-  return await apiClient.post<any, Cart>(
+  return await apiClient.post<{}, Cart>(
     "me/carts/default/reset",
     {},
     {

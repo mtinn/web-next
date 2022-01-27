@@ -4,6 +4,7 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import CategoryView from "../domain/category/components/view";
 import { getCategoriesAll } from "../api/category/data";
 import { getLayout } from "../api/layout/data";
+import { Category } from "../api/category/type";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -15,7 +16,7 @@ export const getServerSideProps = async (
   const slug =
     typeof categorySlug === "string" ? categorySlug : categorySlug?.join("/");
   const category = flattenCategories(categories).find(
-    (x) => x.absoluteSlug === slug
+    (x: Category) => x.absoluteSlug === slug
   );
 
   if (undefined === category) {
@@ -41,7 +42,7 @@ const CategoryPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <CategoriesContainer categories={categories}>
-      <CategoryView layout={layout} category={category}></CategoryView>
+      <CategoryView layout={layout} category={category} />
     </CategoriesContainer>
   );
 };

@@ -3,6 +3,8 @@ import { cartItem } from "../../../api/cart/type";
 import { useCart } from "../hooks/cart";
 import styles from "./Cart.module.css";
 import Item from "../components/item";
+import MediaItem from "../../layout/components/mediaItem";
+import Link from "next/link";
 
 function Cart() {
   const { cart, clearCart, loadCart } = useCart();
@@ -34,7 +36,17 @@ function Cart() {
           </a>
         </span>
         <ul>{cart?.items.map((item: cartItem) => Item(item))}</ul>
-        <span>Proceed to checkout - {cart?.totalPrice?.formattedValue}</span>
+        <span>
+          <Link href={`/carts/default/checkouts/default`}>
+            <a
+              onClick={(e) => {
+                showCartDetails(!cartDetails);
+              }}
+            >
+              Proceed to checkout - {cart?.totalPrice?.formattedValue}
+            </a>
+          </Link>
+        </span>
       </div>
     </>
   );

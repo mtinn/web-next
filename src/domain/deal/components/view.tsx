@@ -1,4 +1,4 @@
-import { Category } from "../../category/types";
+import { Category } from "../../../api/category/type";
 import Breadcrumb from "./breadcrumb";
 import { Deal } from "../../../api/deal/type";
 import React, { useState } from "react";

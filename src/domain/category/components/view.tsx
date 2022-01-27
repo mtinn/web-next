@@ -1,5 +1,5 @@
 import Breadcrumb from "./breadcrumb";
-import { Category } from "../types";
+import { Category } from "../../../api/category/type";
 import LayoutView from "../../../domain/layout/components/view";
 import { Layout } from "../../../api/layout/type";
 

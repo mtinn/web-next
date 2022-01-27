@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <title>{siteTitle}</title>
       </Head>
       <HeaderView />
-      <main>{children}</main>
+      <main className={"main"}>{children}</main>
     </>
   );
 }
