@@ -1,4 +1,4 @@
-import { ConfirmationCheckout } from "../../../api/checkout/type";
+import { ConfirmationCheckout } from "../../../../api/checkout/type";
 import ConfirmationItem from "./confirmationItems";
 
 function Confirmation({
@@ -6,12 +6,9 @@ function Confirmation({
 }: {
   confirmation: ConfirmationCheckout;
 }) {
-  const props = {
-    dangerouslySetInnerHTML: { __html: confirmation.snippet },
-  };
   return (
     <>
-      <div {...props} />
+      <div dangerouslySetInnerHTML={{ __html: confirmation.snippet }} />
       <ConfirmationItem cart={confirmation.cart} />
     </>
   );

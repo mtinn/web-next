@@ -1,5 +1,5 @@
-import { Cart, cartItem } from "../../../api/cart/type";
-import Item from "../../cart/components/item";
+import { Cart, cartItem } from "../../../../api/cart/type";
+import Item from "../../../cart/components/item";
 import React from "react";
 
 function ConfirmationItem({ cart }: { cart: Cart }) {

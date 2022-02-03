@@ -44,7 +44,7 @@ const DealPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <CategoriesContainer categories={categories}>
-      <DealView deal={deal} category={category}></DealView>
+      <DealView deal={deal} category={category} />
     </CategoriesContainer>
   );
 };

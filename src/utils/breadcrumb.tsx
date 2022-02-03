@@ -9,7 +9,7 @@ function BreadcrumbLinks({ links }: { links: BreadcrumbItem[] }) {
   return (
     <>
       <ul>
-        {links.map((item: BreadcrumbItem, key) => (
+        {links.map((item: BreadcrumbItem, key: number) => (
           <li key={key}>
             {item.href ? (
               <Link href={`${item.href}`}>

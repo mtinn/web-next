@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { confirmationCheckout } from "../../../../../../../api/checkout/data";
-import Confirmation from "../../../../../../../domain/checkouts/components/confirmation";
+import Confirmation from "../../../../../../../domain/checkouts/components/confirmation/view";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext

@@ -6,6 +6,8 @@ import Image from "next/image";
 import styles from "./menu/Menu.module.css";
 import { useRouter } from "next/router";
 import Cart from "../../cart/components/view";
+import AutoComplete from "../../../utils/autocomplete";
+import { getList } from "../../autocomplete/autocomplete";
 
 function HeaderView() {
   const router = useRouter();
@@ -40,6 +42,7 @@ function HeaderView() {
         <span key={path.join("/")} className={menu ? "" : styles.hidden}>
           <Menu />
         </span>
+        <AutoComplete search={getList} />
         <Cart />
       </header>
     </>
