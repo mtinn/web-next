@@ -9,6 +9,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  background-color: transparent;
+}
+ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
 }
 
 * {
@@ -16,6 +21,10 @@ a {
 }
 .hidden {
   display: none;
+}
+.main {
+  margin: 0 auto;
+  max-width: 1024px;
 }
 .circle-loader {
   fill: transparent;

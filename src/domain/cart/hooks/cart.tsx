@@ -38,6 +38,12 @@ function CartProvider({ children }: CartProviderProps) {
   };
   const addToCart = async (item: itemCart): Promise<Cart> => {
     const cart = await addToCartApi(item);
+    /**
+    if (cart.error) {
+      throw CartFailMessage;
+    }
+
+     **/
     setCart(cart);
     return cart;
   };

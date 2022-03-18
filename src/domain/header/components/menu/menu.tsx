@@ -18,16 +18,18 @@ function Menu() {
   };
   return (
     <nav className={styles.main}>
-      {categories.length > 0 && (
-        <MenuItem
-          categories={categories}
-          active={true}
-          selectedCategories={selectedCategories}
-          level={0}
-          parentCategory={undefined}
-          onClick={onClickHandler}
-        />
-      )}
+      <div className={styles.list}>
+        {categories.length > 0 && (
+          <MenuItem
+            categories={categories}
+            active={true}
+            selectedCategories={selectedCategories}
+            level={0}
+            parentCategory={undefined}
+            onClick={onClickHandler}
+          />
+        )}
+      </div>
     </nav>
   );
 }

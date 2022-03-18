@@ -9,5 +9,8 @@ export default async function handler(
 ) {
   const token = req.cookies;
   const result = await addToCart(token.access_token, JSON.parse(req.body));
+  if (result.status) {
+    res.status(result.status).json(result.detail);
+  }
   res.status(200).json(result);
 }

@@ -1,0 +1,56 @@
+
+.buySummary {
+  display: flex;
+  flex-wrap: wrap;
+}
+.meta {
+  margin-left: 16px;
+}
+.summary {
+  width: 642px;
+}
+.buttonBuy {
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 3;
+  background-color: #3cbdd1;
+  padding: 0 24px;
+  margin-left: 16px;
+}
+.newPrice {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: right;
+  color: #e14b26;
+}
+.oldPrice {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: .5px;
+  text-align: right;
+  color: rgba(0,0,0,.54);
+  text-decoration: line-through;
+}
+.dealLines {
+  margin-right: 24px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  cursor: auto;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, .12);
+  max-width: 642px;
+}
+.blockSection {
+  max-width: 642px;
+}
+.textSection {
+  width: 320px;
+  display: block;
+  float: left;
+
+}

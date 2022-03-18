@@ -3,6 +3,8 @@ import styles from "./Menu.module.css";
 import { hasChildren } from "../../../category/categories";
 import React from "react";
 import MenuItem from "./menuItem";
+import arrowRight from "../../../../../public/arrow-right.svg";
+import Image from "next/image";
 
 function SubMenu({
   category,
@@ -32,8 +34,10 @@ function SubMenu({
             : undefined
         }
       >
-        {category.name}
-        {hasChildren(category) ? " >" : ""}
+        <span>{category.name}</span>
+        {hasChildren(category) && (
+          <Image src={arrowRight.src} alt="" width={24} height={24} />
+        )}
       </a>
       {hasChildren(category) && (
         <MenuItem

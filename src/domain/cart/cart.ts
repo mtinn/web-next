@@ -1,5 +1,5 @@
 import api from "../../api/api";
-import { Cart } from "../../api/cart/type";
+import { Cart, cartSchema } from "../../api/cart/type";
 
 export async function getCart() {
   return await api.get<Cart>("/api/cart/cart");
@@ -13,5 +13,13 @@ export type itemCart = {
   categoryTrackingString: string;
 };
 export async function addToCart(item: itemCart) {
-  return await api.post<itemCart, Cart>("/api/cart/add", item);
+  const cart = await api.post<itemCart, Cart>("/api/cart/add", item);
+  try {
+    console.log(cart);
+    return cartSchema.parse(cart);
+  } catch (e) {
+    let error = new Error();
+    Object.assign(error, cart);
+    throw error;
+  }
 }

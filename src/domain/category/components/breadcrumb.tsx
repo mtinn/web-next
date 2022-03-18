@@ -1,8 +1,9 @@
-import { Category } from "../types";
 import { useContext } from "react";
 import { CategoryContext } from "../contexts/category";
 import BreadcrumbLinks from "../../../utils/breadcrumb";
 import { CategoryTag, hasTag } from "../categories";
+import dictionary from "../../../../dictionary";
+import { Category } from "../../../api/category/type";
 
 function Breadcrumb({ category }: { category: Category }) {
   const { findPath } = useContext(CategoryContext);
@@ -11,7 +12,7 @@ function Breadcrumb({ category }: { category: Category }) {
   }
   const categories = findPath(category.absoluteSlug);
   const links = [
-    { href: "/", name: "start" },
+    { href: "/", name: dictionary.homePage },
     ...categories.map((item) => ({ href: item.absoluteSlug, name: item.name })),
   ];
 

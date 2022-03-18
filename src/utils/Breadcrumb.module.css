@@ -1,0 +1,10 @@
+.breadcrumb {
+  display: flex;
+  height: 48px;
+  justify-content: flex-start;
+}
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+  min-width: max-content;
+}

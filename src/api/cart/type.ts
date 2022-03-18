@@ -17,6 +17,20 @@ export const cartItem = z.object({
     dealLine: z.object({
       name: z.string(),
     }),
+    mainImage: z.object({
+      size: z.object({
+        width: z.number(),
+        height: z.number(),
+      }),
+      items: z.object({
+        small: z.string(),
+      }),
+    }),
+    price: z.object({
+      formattedValue: z.string(),
+      value: z.number(),
+      currency: z.string(),
+    }),
   }),
 });
 export const feeItem = z.object({

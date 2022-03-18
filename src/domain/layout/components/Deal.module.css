@@ -1,0 +1,33 @@
+.dealList {
+  display: flex;
+  align-items: normal;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.deal {
+  width: calc(33.37% - 18px);
+  margin-right: 16px;
+  margin-bottom: 48px;
+}
+.dealCard {
+
+}
+.mainImage {
+  position: relative;
+}
+.oldPrice {
+  text-decoration: line-through;
+}
+.newPrice {
+  margin-left: 5px;
+}
+.meta {
+  background-image: linear-gradient(108deg,#df3020,#df8f20);
+  color: #FFFFFF;
+  margin-left: 8px;
+  align-items: center;
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+}
+

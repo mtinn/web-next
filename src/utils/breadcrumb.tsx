@@ -1,5 +1,8 @@
 import Link from "next/link";
-
+import arrowRight from "../../public/arrow-right.svg";
+import Image from "next/image";
+import React from "react";
+import styles from "./Breadcrumb.module.css";
 type BreadcrumbItem = {
   name: string;
   href: string | null;
@@ -8,18 +11,25 @@ type BreadcrumbItem = {
 function BreadcrumbLinks({ links }: { links: BreadcrumbItem[] }) {
   return (
     <>
-      <ul>
-        {links.map((item: BreadcrumbItem, key: number) => (
-          <li key={key}>
-            {item.href ? (
-              <Link href={`${item.href}`}>
-                <a>{item.name}</a>
-              </Link>
-            ) : (
-              <span>{item.name}</span>
-            )}
-          </li>
-        ))}
+      <ul className={styles.breadcrumb}>
+        {links.map(
+          (item: BreadcrumbItem, key: number, arr: BreadcrumbItem[]) => (
+            <li key={key}>
+              {item.href ? (
+                <>
+                  <Link href={`${item.href}`}>
+                    <a>{item.name}</a>
+                  </Link>
+                  {arr.length - 1 !== key && (
+                    <Image src={arrowRight.src} alt="" width={16} height={16} />
+                  )}
+                </>
+              ) : (
+                <span>{item.name}</span>
+              )}
+            </li>
+          )
+        )}
       </ul>
     </>
   );

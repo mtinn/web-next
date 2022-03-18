@@ -1,3 +1,82 @@
 .hidden {
   display: none;
 }
+.cart {
+  opacity: .25;
+  cursor: default;
+}
+.cartActive {
+  cursor: default;
+}
+.number {
+  display: none;
+}
+.numberActive {
+  color:red;
+}
+.details {
+  width: 50%;
+}
+.image {
+  width: 50%;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.popup {
+  width: 360px;
+  z-index: 10;
+  position: absolute;
+  top: 24px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 8px;
+}
+.price {
+  text-align: right;
+}
+.title {
+  text-align: center;
+  width: 320px;
+  font-weight: bold;
+}
+.trash {
+  width: 50%;
+}
+.checkout {
+  background: #48c55c;
+  border-radius: 4px;
+  border:0px;
+  width: 100%;
+  color: #FFFFFF;
+  padding: 11px 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.summary {
+  padding-left: 5px;
+}
+.popupWrapper {
+  position: relative;
+}
+.curtain:before {
+  position: fixed;
+  display: inline-block;
+  content: "";
+  background: rgba(0,0,0,.5);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+.curtain {
+  position: relative;
+}

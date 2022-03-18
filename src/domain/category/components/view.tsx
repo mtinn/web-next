@@ -14,9 +14,6 @@ function CategoryView({
     <>
       <Breadcrumb category={category} />
       <LayoutView layout={layout} />
-      <h1>Categories</h1>
-      <h2>Name : {category.name}</h2>
-      <h3>Slug : {category.absoluteSlug}</h3>
     </>
   );
 }

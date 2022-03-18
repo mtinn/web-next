@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import logo from "../../../../public/img.png";
+import menuLogo from "../../../../public/menu.svg";
+import searchLogo from "../../../../public/search.svg";
 import Link from "next/link";
 import Menu from "./menu/menu";
 import Image from "next/image";
-import styles from "./menu/Menu.module.css";
+import styles from "./Header.module.css";
 import { useRouter } from "next/router";
 import Cart from "../../cart/components/view";
 import AutoComplete from "../../../utils/autocomplete";
@@ -15,35 +17,38 @@ function HeaderView() {
   const [menu, showMenu] = useState<boolean>(false);
   return (
     <>
-      <header>
-        <span>
+      <header className={styles.siteHeader}>
+        <div className={styles.content}>
           <Link href="/">
-            <a>
-              <Image
-                className={styles.logo}
-                src={logo.src}
-                alt=""
-                width={50}
-                height={40}
-              />
+            <a className={styles.logo}>
+              <Image src={logo.src} alt="" width={48} height={30} />
             </a>
           </Link>
-        </span>
-        <span>
           <a
+            className={styles.menu}
             onClick={(e) => {
               e.preventDefault();
               showMenu(!menu);
             }}
           >
-            Menu
+            <Image src={menuLogo.src} alt="" width={16} height={16} />
+            <span>KATEGORIER</span>
           </a>
-        </span>
-        <span key={path.join("/")} className={menu ? "" : styles.hidden}>
-          <Menu />
-        </span>
-        <AutoComplete search={getList} />
-        <Cart />
+          <span key={path.join("/")} className={menu ? "" : "hidden"}>
+            <Menu />
+          </span>
+          <span className={styles.autocomplete}>
+            <img
+              className={styles.searchLogo}
+              src={searchLogo.src}
+              alt=""
+              width={24}
+              height={24}
+            />
+            <AutoComplete search={getList} classNameInput={styles.search} />
+          </span>
+          <Cart />
+        </div>
       </header>
     </>
   );

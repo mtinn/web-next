@@ -8,6 +8,31 @@ export const SegmentDealItem = z.object({
   id: z.string(),
   slug: z.string(),
   title: z.string(),
+  subtitle: z.string(),
+  status: z.string(),
+  mainImage: z.object({
+    items: z.object({
+      normal: z.string(),
+      large: z.string(),
+    }),
+  }),
+  price: z.object({
+    newPrice: z.object({
+      formattedValue: z.string(),
+      value: z.number(),
+      currency: z.string(),
+    }),
+    oldPrice: z.object({
+      formattedValue: z.string(),
+      value: z.number(),
+      currency: z.string(),
+    }),
+    discountPrice: z.object({
+      formattedValue: z.string(),
+      value: z.number(),
+      currency: z.string(),
+    }),
+  }),
 });
 export const MediaSchema = z.object({
   size: z.object({

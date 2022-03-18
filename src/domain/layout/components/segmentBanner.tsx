@@ -8,29 +8,25 @@ interface SegmentType2 extends SegmentType {
   items: SegmentBannerItem[];
 }
 export default function SegmentBanner({ items, meta }: SegmentType2) {
-  const segmentsRender = items.map((item: SegmentBannerItem) => {
+  const segmentsRender = items.map((item: SegmentBannerItem, key) => {
     return (
-      <>
-        <li key={item.id}>
-          <Link href={item.uri}>
-            <a>
-              <MediaItem item={item.media} />
-            </a>
-          </Link>
-        </li>
-      </>
+      <li key={key}>
+        <Link href={item.uri}>
+          <a>
+            <MediaItem item={item.media} />
+          </a>
+        </Link>
+      </li>
     );
   });
 
   return (
-    <>
-      <ul>
-        {segmentsRender.map((item: ReactNode) => (
-          <>
-            <div>{item}</div>
-          </>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {segmentsRender.map((item: ReactNode, key) => (
+        <>
+          <div key={key}>{item}</div>
+        </>
+      ))}
+    </ul>
   );
 }

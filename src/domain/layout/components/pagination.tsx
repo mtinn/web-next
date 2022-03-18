@@ -1,7 +1,7 @@
 import { SegmentMetaData } from "../../../api/layout/type";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import styles from "./Pagination.module.css";
 export const DOTS = "...";
 
 export function getPagesAmount(limit: number, total: number): number {
@@ -97,7 +97,7 @@ export default function Pagination({
   return (
     <>
       <nav>
-        <ul>
+        <ul className={styles.pages}>
           {previousPage && (
             <li key={"previous"}>
               <Link

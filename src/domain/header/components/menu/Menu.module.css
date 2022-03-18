@@ -1,21 +1,43 @@
 
 /* level 1 Main menu ----------------------------------------- */
-
-.main > ul{
+.main {
+  position: absolute;
+  top: 53px;
+  z-index: 1;
+}
+.list {
+  z-index: 1;
+  background: #FFFFFF;
+}
+.list > ul{
   list-style:none;
   position:relative;
 }
-.main > ul > li{
+.list li{
   width: 200px;
+  line-height: 1.5;
 }
+.list li a {
+  width: 100%;
+}
+.list li a span {
+  line-height: 1.43;
+  font-size: 14px;
+  margin: 0;
+  padding: 0px 0px 7px 0;
+  max-width: 131px;
+  top: 7px;
+}
+
+
 /* sub Main menu ----------------------------------------- */
-.main > ul > li ul {
+.list > ul > li ul {
   list-style:none;
   position: absolute;
-  z-index:1000;
-  left:250px;
+  left:200px;
   top:0px;
   width: 200px;
+  background: #FFFFFF;
 }
 .hidden {
   display: none;
